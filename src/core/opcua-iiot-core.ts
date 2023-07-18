@@ -40,7 +40,7 @@ import {
   NodeClass,
   NodeId,
   NodeIdType,
-  OPCUAClient, OPCUADiscoveryServer, UserIdentityInfo,
+  OPCUAClient, OPCUADiscoveryServer, StatusCodes, UserIdentityInfo,
 } from "node-opcua";
 import {WriteValueOptions} from "node-opcua-service-write";
 import {VariantOptions} from "node-opcua-variant";
@@ -343,7 +343,9 @@ export function buildNewVariant(datatype: DataTypeInput, value: any): DataValueO
   logger.detailDebugLog('buildNewVariant variantValue: ' + JSON.stringify(variantValue))
 
   return {
-    value: variantValue
+    value: variantValue,
+    sourceTimestamp: new Date(),
+    statusCode: StatusCodes.Good
   }
 }
 
